@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<item
+		android:id="@+id/mirror_fragment"
+		android:showAsAction="never"
+		android:title="@string/mirror_fragment"/>
+	<item
+		android:id="@+id/mirror_preso"
+		android:showAsAction="never"
+		android:title="@string/mirror_preso"/>
+  <item
+    android:id="@+id/video"
+    android:showAsAction="never"
+    android:title="@string/video"/>
+	
+</menu>

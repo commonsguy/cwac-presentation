@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".SimpleMirrorActivity">
+
+	<com.commonsware.cwac.preso.MirroringFrameLayout
+		android:id="@+id/source"
+		android:layout_width="1000px"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		android:background="#88FF0000">
+
+		<WebView
+		android:id="@+id/webkit"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
+
+<!-- 		<TextClock -->
+<!-- 			android:layout_width="wrap_content" -->
+<!-- 			android:layout_height="wrap_content" -->
+<!-- 			android:layout_gravity="center" -->
+<!-- 			tools:targetApi="jelly_bean_mr1" -->
+<!-- 			android:format12Hour="hh:mm:ss"/> -->
+
+	</com.commonsware.cwac.preso.MirroringFrameLayout>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="4dip"
+		android:background="#FF000000"/>
+
+	<com.commonsware.cwac.preso.Mirror
+		android:id="@+id/target"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="2"/>
+
+</LinearLayout>

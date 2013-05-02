@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">PresentationDemo</string>
+	<string name="action_settings">Settings</string>
+	<string name="hello_world">Hello world!</string>
+  <string name="secondary">You should see content on the secondary display!</string>
+  <string name="primary">You should see content to the right!</string>
+	<string name="mirror">Simple Mirror</string>
+  <string name="mirror_fragment">Mirror Fragment</string>
+  <string name="mirror_preso">Mirror Presentation</string>
+  <string name="video">Video Presentation</string>
+</resources>
