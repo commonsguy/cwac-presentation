@@ -2,7 +2,7 @@ CWAC-Presentation: Second Screens Supported Succinctly
 ======================================================
 
 This Android library project (also
-[available as a JAR](https://github.com/commonsguy/downloads))
+[available as a JAR](https://github.com/commonsguy/cwac-presentation/releases))
 offers a series of classes that wrap around the `Presentation` and
 `DisplayManager` of Android 4.2: 
 
