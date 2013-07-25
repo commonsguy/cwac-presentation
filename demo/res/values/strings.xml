@@ -10,4 +10,5 @@
   <string name="mirror_fragment">Mirror Fragment</string>
   <string name="mirror_preso">Mirror Presentation</string>
   <string name="video">Video Presentation</string>
+  <string name="nested_fragment">Nested Fragment</string>
 </resources>

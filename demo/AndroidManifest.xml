@@ -33,9 +33,16 @@
 		<activity
 			android:name="MirrorPresentationActivity"
 			android:label="@string/mirror_preso"/>
-    <activity
-      android:name="VideoPresentationActivity"
-      android:label="@string/video" android:configChanges="mcc|mnc|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" android:screenOrientation="landscape"/>
-</application>
+		<activity
+			android:name="VideoPresentationActivity"
+			android:configChanges="mcc|mnc|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+			android:label="@string/video"
+			android:screenOrientation="landscape"/>
+		<activity
+			android:name="NestedFragmentActivity"
+			android:label="@string/nested_fragment">
+
+		</activity>
+	</application>
 
 </manifest>

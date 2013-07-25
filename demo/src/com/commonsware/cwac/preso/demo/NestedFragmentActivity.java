@@ -16,17 +16,14 @@ package com.commonsware.cwac.preso.demo;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Display;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import com.commonsware.cwac.preso.PresentationFragment;
 import com.commonsware.cwac.preso.PresentationHelper;
 
-public class MainActivity extends Activity implements
+public class NestedFragmentActivity extends Activity implements
     PresentationHelper.Listener {
   PresentationFragment preso=null;
   View inline=null;
@@ -55,36 +52,6 @@ public class MainActivity extends Activity implements
   public void onPause() {
     helper.onPause();
     super.onPause();
-  }
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.main, menu);
-
-    return(super.onCreateOptionsMenu(menu));
-  }
-
-  @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case R.id.mirror_fragment:
-        startActivity(new Intent(this, MirrorFragmentActivity.class));
-        return(true);
-
-      case R.id.mirror_preso:
-        startActivity(new Intent(this, MirrorPresentationActivity.class));
-        return(true);
-
-      case R.id.video:
-        startActivity(new Intent(this, VideoPresentationActivity.class));
-        return(true);
-
-      case R.id.nested:
-        startActivity(new Intent(this, NestedFragmentActivity.class));
-        return(true);
-    }
-
-    return(super.onOptionsItemSelected(item));
   }
 
   @Override
@@ -118,7 +85,6 @@ public class MainActivity extends Activity implements
   }
 
   private PresentationFragment buildPreso(Display display) {
-    return(SamplePresentationFragment.newInstance(this, display,
-                                                  "http://commonsware.com"));
+    return(NestedPresentationFragment.newInstance(this, display));
   }
 }
