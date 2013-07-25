@@ -89,11 +89,15 @@
     <!-- version-tag: custom -->
     <import file="${sdk.dir}/tools/ant/build.xml" />
 
-    <target name="jar" depends="debug">
-        <jar
-            destfile="bin/CWAC-Presentation.jar"
-            basedir="bin/classes"
-        />
-    </target>
+	<target name="jar" depends="release">
+		<delete file="bin/CWAC-Presentation.jar" />
+    <jar destfile="bin/CWAC-Presentation.jar">
+      <fileset dir="bin/classes">
+        <exclude name="**/BuildConfig.class" />
+        <exclude name="**/R.class" />
+        <exclude name="**/R$*.class" />
+      </fileset>
+    </jar>
+	</target>
 
 </project>
