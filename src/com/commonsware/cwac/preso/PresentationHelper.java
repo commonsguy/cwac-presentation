@@ -16,6 +16,7 @@ package com.commonsware.cwac.preso;
 
 import android.content.Context;
 import android.hardware.display.DisplayManager;
+import android.os.Build;
 import android.view.Display;
 
 public class PresentationHelper implements
@@ -31,6 +32,7 @@ public class PresentationHelper implements
   private Context ctxt=null;
   private Display current=null;
   private boolean isFirstRun=true;
+  private boolean isEnabled=true;
 
   public PresentationHelper(Context ctxt, Listener listener) {
     this.ctxt=ctxt;
@@ -38,53 +40,78 @@ public class PresentationHelper implements
   }
 
   public void onResume() {
-    mgr=(DisplayManager)ctxt.getSystemService(Context.DISPLAY_SERVICE);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+      mgr=
+          (DisplayManager)ctxt.getSystemService(Context.DISPLAY_SERVICE);
 
-    handleRoute();
-    mgr.registerDisplayListener(this, null);
+      handleRoute();
+      mgr.registerDisplayListener(this, null);
+    }
   }
 
   public void onPause() {
-    listener.clearPreso(false);
-    current=null;
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+      listener.clearPreso(false);
+      current=null;
 
-    mgr.unregisterDisplayListener(this);
+      mgr.unregisterDisplayListener(this);
+    }
+  }
+
+  public void enable() {
+    isEnabled=true;
+    handleRoute();
+  }
+
+  public void disable() {
+    isEnabled=false;
+
+    if (current != null) {
+      listener.clearPreso(true);
+      current=null;
+    }
+  }
+
+  public boolean isEnabled() {
+    return(isEnabled);
   }
 
   private void handleRoute() {
-    Display[] displays=
-        mgr.getDisplays(DisplayManager.DISPLAY_CATEGORY_PRESENTATION);
+    if (isEnabled()) {
+      Display[] displays=
+          mgr.getDisplays(DisplayManager.DISPLAY_CATEGORY_PRESENTATION);
 
-    if (displays.length == 0) {
-      if (current != null || isFirstRun) {
-        listener.clearPreso(true);
-        current=null;
-      }
-    }
-    else {
-      Display display=displays[0];
-
-      if (display != null && display.isValid()) {
-        if (current == null) {
-          listener.showPreso(display);
-          current=display;
-        }
-        else if (current.getDisplayId() != display.getDisplayId()) {
+      if (displays.length == 0) {
+        if (current != null || isFirstRun) {
           listener.clearPreso(true);
-          listener.showPreso(display);
-          current=display;
-        }
-        else {
-          // no-op: should already be set
+          current=null;
         }
       }
-      else if (current != null) {
-        listener.clearPreso(true);
-        current=null;
-      }
-    }
+      else {
+        Display display=displays[0];
 
-    isFirstRun=false;
+        if (display != null && display.isValid()) {
+          if (current == null) {
+            listener.showPreso(display);
+            current=display;
+          }
+          else if (current.getDisplayId() != display.getDisplayId()) {
+            listener.clearPreso(true);
+            listener.showPreso(display);
+            current=display;
+          }
+          else {
+            // no-op: should already be set
+          }
+        }
+        else if (current != null) {
+          listener.clearPreso(true);
+          current=null;
+        }
+      }
+
+      isFirstRun=false;
+    }
   }
 
   @Override
