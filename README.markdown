@@ -141,14 +141,16 @@ plus `WebView`, but not `SurfaceView` or things that use `SurfaceView`
 
 Dependencies
 ------------
-This project depends on Android 4.2 and higher (API Level 17).
+This project depends on Android 4.2 and higher (API Level 17) to actually
+do its work. It should survive on older devices, simply doing nothing.
 
 This project also depends upon
 [the CWAC-Layouts project](http://github.com/commonsguy/cwac-layouts).
 
 Version
 -------
-This is version v0.1.0 of this module, meaning it is brand new.
+This is version v0.2.0 of this module, meaning it is being let out of
+its cage and exercised a bit more.
 
 Demo
 ----
@@ -184,6 +186,7 @@ the fence may work, but it may not.
 
 Release Notes
 -------------
+- v0.2.0: handle API level diffs, support enable/disable of `PresentationHelper`
 - v0.1.0: initial release
 
 Who Made This?
