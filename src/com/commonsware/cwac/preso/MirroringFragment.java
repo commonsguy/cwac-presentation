@@ -66,4 +66,8 @@ abstract public class MirroringFragment extends Fragment {
       setMirror(mirror);
     }
   }
+  
+  public void updateMirror() {
+    source.invalidate();
+  }
 }
