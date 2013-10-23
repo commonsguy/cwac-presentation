@@ -57,6 +57,10 @@ a `boolean` value, `true` indicating that the activity is going away, `false`
 indicating that we merely lost our `Display`. You can use this value to perhaps
 optimize dealing with `Display` changes, without destroying all the data.
 
+You can call `disable()` and `enable()` on the `PresentationHelper`. Calling
+`disable()` stops the custom content and reverts the device to normal screen
+mirroring mode. Calling `enable()` reverts a previous `disable()` call.
+
 Usage: PresentationFragment
 ---------------------------
 `PresentationFragment` is a thin veneer over `DialogFragment` to allow it to 
