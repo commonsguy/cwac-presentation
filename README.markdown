@@ -176,7 +176,7 @@ This project also depends upon
 
 Version
 -------
-This is version v0.2.0 of this module, meaning it is being let out of
+This is version v0.3.0 of this module, meaning it is being let out of
 its cage and exercised a bit more.
 
 Demo
@@ -213,6 +213,7 @@ the fence may work, but it may not.
 
 Release Notes
 -------------
+- v0.3.0: migrated to Gradle
 - v0.2.0: handle API level diffs, support enable/disable of `PresentationHelper`
 - v0.1.0: initial release
 
