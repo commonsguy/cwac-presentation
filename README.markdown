@@ -1,8 +1,7 @@
 CWAC-Presentation: Second Screens Supported Succinctly
 ======================================================
 
-This Android library project (also
-[available as a JAR](https://github.com/commonsguy/cwac-presentation/releases))
+This project
 offers a series of classes that wrap around the `Presentation` and
 `DisplayManager` of Android 4.2: 
 
@@ -21,17 +20,41 @@ leverage the mirroring logic from
 [the CWAC-Layouts project](http://github.com/commonsguy/cwac-layouts) to help you
 display a `Presentation` based upon mirrored content from the main screen
 
-Note that if you wish to use the JAR, you will need to also add the JAR from
+Installation
+------------
+This Android library project is 
+[available as a JAR](https://gihub.com/commonsguy/cwac-presentation/releases).
+If you wish to use the JAR, you will need to also add the JAR from
 [the CWAC-Layouts project](http://github.com/commonsguy/cwac-layouts) to your
 project if you wish to use the `Mirror*` classes. If you are not using the `Mirror*`
 classes, then the CWAC-Presentation JAR is sufficient.
 
-Also note that if you plan to use this as an Android library project that you
+Also note that if you plan to use this as an Android library project
+in source form, you
 will also need to download [the CWAC-Layouts project](http://github.com/commonsguy/cwac-layouts)
 (and, if needed, modify this project's configuration to point to your copy of
 CWAC-Layouts' library project). Alternatively, download the CWAC-Layouts JAR into
 the `libs/` directory of your clone of this project and remove the dependency on
 the CWAC-Layouts library project.
+
+This project is also available as
+an artifact for use with Gradle. To use that, add the following
+blocks to your `build.gradle` file:
+
+```groovy
+repositories {
+    maven {
+        url "https://repo.commonsware.com.s3.amazonaws.com"
+    }
+}
+
+dependencies {
+    compile 'com.commonsware.cwac:presentation:0.3.0'
+}
+```
+
+Or, if you cannot use SSL, use `http://repo.commonsware.com` for the repository
+URL. This should automatically pull down the CWAC-Layouts dependency.
 
 Usage: PresentationHelper
 -------------------------
