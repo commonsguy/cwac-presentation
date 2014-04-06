@@ -41,7 +41,6 @@
 		<activity
 			android:name="NestedFragmentActivity"
 			android:label="@string/nested_fragment">
-
 		</activity>
 	</application>
 

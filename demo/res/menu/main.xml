@@ -8,13 +8,13 @@
 		android:id="@+id/mirror_preso"
 		android:showAsAction="never"
 		android:title="@string/mirror_preso"/>
-  <item
-    android:id="@+id/video"
-    android:showAsAction="never"
-    android:title="@string/video"/>
-  <item
-    android:id="@+id/nested"
-    android:showAsAction="never"
-    android:title="@string/nested_fragment"/>
-  	
+	<item
+		android:id="@+id/video"
+		android:showAsAction="never"
+		android:title="@string/video"/>
+	<item
+		android:id="@+id/nested"
+		android:showAsAction="never"
+		android:title="@string/nested_fragment"/>
+
 </menu>
