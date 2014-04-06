@@ -20,6 +20,9 @@ leverage the mirroring logic from
 [the CWAC-Layouts project](http://github.com/commonsguy/cwac-layouts) to help you
 display a `Presentation` based upon mirrored content from the main screen
 
+- `PresentationService`, for showing content on an external display from the
+background, even if your primary UI is destroyed or otherwise not in the foreground
+
 Installation
 ------------
 This Android library project is 
@@ -49,7 +52,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.commonsware.cwac:presentation:0.3.0'
+    compile 'com.commonsware.cwac:presentation:0.4.+'
 }
 ```
 
@@ -166,6 +169,60 @@ Note that `MirroringFragment` suffers the same limitations as does
 plus `WebView`, but not `SurfaceView` or things that use `SurfaceView`
 (e.g., `VideoView`, Maps V2 maps).
 
+Usage: PresentationService
+--------------------------
+`PresentationService` is an abstract base class for you to extend, where
+`PresentationService` handles showing your content on an external display,
+and you simply manage that content.
+
+In your `PresentationService` subclass, you will need to implement two
+methods:
+
+- `getThemeId()`, which returns the ID of the style resource that you want
+to use for content being shown on the external display.
+
+- `buildPresoView()`, which returns the `View` that represents the content to
+show on the external display. Note that since this is a `Service`, not an
+`Activity`, you cannot use fragments, only views. `buildPresoView()` is
+passed a `Context` and a `LayoutInflater` for your use to set up the
+content to be displayed.
+
+You may optionally override the standard lifecycle methods (though please chain
+to the superclass!) and `buildLayoutParams()`, which returns a
+`WindowManager.LayoutParams` describing how your `View` should be applied to
+the external display. The default implementation of `buildLayoutParams()` is
+probably adequate for your needs.
+
+You may also optionally override the `showPreso()` and `clearPreso()` methods
+defined by `PresentationHelper.Listener`, though, once again, please chain
+to the superclass implementations.
+
+Then, all you need to do is:
+
+- Add your service to your manifest, along with the `SYSTEM_ALERT_WINDOW`
+permission
+
+- Arrange to start and stop the service as needed
+
+Once started, the service will automatically call `buildPresoView()` and
+show the content, once an external display is detected.
+
+If things that the user does in your UI should affect the behavior
+of the service and its content, use a message bus implementation, such as:
+
+- `LocalBroadcastManager`
+- Square's Otto
+- greenrobot's EventBus
+
+Your `PresentationService` can receive bus messages and update the `View`
+accordingly. Note that there is no present means to *replace* the `View`, so
+you may wish to have `buildPresoView()` return a `FrameLayout` or something else
+whose contents you can replace *in toto* if needed.
+
+Note that it is safe to call `startService()` on the service multiple times,
+if you do not know whether the service is already running and need to ensure
+that it is running now.
+
 Dependencies
 ------------
 This project depends on Android 4.2 and higher (API Level 17) to actually
@@ -176,15 +233,14 @@ This project also depends upon
 
 Version
 -------
-This is version v0.3.0 of this module, meaning it is being let out of
-its cage and exercised a bit more.
+This is version v0.4.0 of this module, meaning it is coming along nicely.
 
 Demo
 ----
 In the `demo/` sub-project you will find a sample project demonstrating the use
-of all the aforementioned classes.
-
-TBD
+of the aforementioned classes, with the exception of `PresentationService`.
+There is a separate `demoService/` sub-project with a sample implementation
+of `PresentationService`.
 
 License
 -------
@@ -213,6 +269,7 @@ the fence may work, but it may not.
 
 Release Notes
 -------------
+- v0.4.0: added `PresentationService`
 - v0.3.0: migrated to Gradle
 - v0.2.0: handle API level diffs, support enable/disable of `PresentationHelper`
 - v0.1.0: initial release
