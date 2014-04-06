@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">PresentationService Demo</string>
+	<string name="hello_world">Hello world!</string>
+  <string name="secondary">You should see content on the secondary display!</string>
+</resources>
