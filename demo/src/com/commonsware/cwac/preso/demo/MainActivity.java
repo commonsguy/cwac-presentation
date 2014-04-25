@@ -75,10 +75,6 @@ public class MainActivity extends Activity implements
         startActivity(new Intent(this, MirrorPresentationActivity.class));
         return(true);
 
-      case R.id.video:
-        startActivity(new Intent(this, VideoPresentationActivity.class));
-        return(true);
-
       case R.id.nested:
         startActivity(new Intent(this, NestedFragmentActivity.class));
         return(true);
