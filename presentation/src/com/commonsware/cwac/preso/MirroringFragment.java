@@ -53,7 +53,7 @@ abstract public class MirroringFragment extends Fragment {
 
   public void setMirror(Mirror mirror) {
     source.setMirror(mirror);
-    aspectLock.setAspectRatioSource(mirror);
+    aspectLock.setAspectRatioSource((View)mirror);
   }
 
   public void setMirror(MirrorPresentationFragment mirrorFragment) {
