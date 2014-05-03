@@ -233,7 +233,7 @@ This project also depends upon
 
 Version
 -------
-This is version v0.4.0 of this module, meaning it is coming along nicely.
+This is version v0.4.1 of this module, meaning it is coming along nicely.
 
 Demo
 ----
@@ -269,6 +269,7 @@ the fence may work, but it may not.
 
 Release Notes
 -------------
+- v0.4.1: tweak for v0.4.0 of CWAC-Layouts
 - v0.4.0: added `PresentationService`
 - v0.3.0: migrated to Gradle
 - v0.2.0: handle API level diffs, support enable/disable of `PresentationHelper`
