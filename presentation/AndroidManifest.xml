@@ -4,10 +4,8 @@
 	android:versionName="1.0">
 
 	<uses-sdk
-		android:minSdkVersion="17"
-		android:targetSdkVersion="17"/>
+		android:minSdkVersion="17"/>
 
-	<application android:allowBackup="false">
-	</application>
+	<application/>
 
 </manifest>

@@ -32,6 +32,8 @@ If you wish to use the JAR, you will need to also add the JAR from
 project if you wish to use the `Mirror*` classes. If you are not using the `Mirror*`
 classes, then the CWAC-Presentation JAR is sufficient.
 
+NOTE: The JAR name, as of v0.4.2, has a `cwac-` prefix, to help distinguish it from other JARs.
+
 Also note that if you plan to use this as an Android library project
 in source form, you
 will also need to download [the CWAC-Layouts project](http://github.com/commonsguy/cwac-layouts)
@@ -251,7 +253,8 @@ file.
 Questions
 ---------
 If you have questions regarding the use of this code, please post a question
-on [StackOverflow](http://stackoverflow.com/questions/ask) tagged with `commonsware` and `android`. Be sure to indicate
+on [StackOverflow](http://stackoverflow.com/questions/ask) tagged with
+`commonsware-cwac` and `android` after [searching to see if there already is an answer](https://stackoverflow.com/search?q=[commonsware-cwac]+presentation). Be sure to indicate
 what CWAC module you are having issues with, and be sure to include source code 
 and stack traces if you are encountering crashes.
 
@@ -269,6 +272,7 @@ the fence may work, but it may not.
 
 Release Notes
 -------------
+- v0.4.2: updated Gradle, fixed manifest for merging, added `cwac-` prefix to JAR
 - v0.4.1: tweak for v0.4.0 of CWAC-Layouts
 - v0.4.0: added `PresentationService`
 - v0.3.0: migrated to Gradle
