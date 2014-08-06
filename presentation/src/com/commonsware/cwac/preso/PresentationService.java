@@ -89,7 +89,7 @@ public abstract class PresentationService extends Service implements
                                           WindowManager.LayoutParams.MATCH_PARENT,
                                           0,
                                           0,
-                                          WindowManager.LayoutParams.TYPE_SYSTEM_ALERT,
+                                          0,
                                           0, PixelFormat.OPAQUE));
   }
 

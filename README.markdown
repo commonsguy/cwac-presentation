@@ -199,13 +199,7 @@ You may also optionally override the `showPreso()` and `clearPreso()` methods
 defined by `PresentationHelper.Listener`, though, once again, please chain
 to the superclass implementations.
 
-Then, all you need to do is:
-
-- Add your service to your manifest, along with the `SYSTEM_ALERT_WINDOW`
-permission
-
-- Arrange to start and stop the service as needed
-
+Then, all you need to do is to arrange to start and stop the service as needed.
 Once started, the service will automatically call `buildPresoView()` and
 show the content, once an external display is detected.
 
@@ -235,7 +229,7 @@ This project also depends upon
 
 Version
 -------
-This is version v0.4.1 of this module, meaning it is coming along nicely.
+This is version v0.4.2 of this module, meaning it is coming along nicely.
 
 Demo
 ----
@@ -272,6 +266,7 @@ the fence may work, but it may not.
 
 Release Notes
 -------------
+- v0.4.3: removed `SYSTEM_ALERT_WINDOW` permission requirement
 - v0.4.2: updated Gradle, fixed manifest for merging, added `cwac-` prefix to JAR
 - v0.4.1: tweak for v0.4.0 of CWAC-Layouts
 - v0.4.0: added `PresentationService`
