@@ -229,7 +229,7 @@ This project also depends upon
 
 Version
 -------
-This is version v0.4.4 of this module, meaning it is coming along nicely.
+This is version v0.4.5 of this module, meaning it is coming along nicely.
 
 Demo
 ----
@@ -266,6 +266,7 @@ the fence may work, but it may not.
 
 Release Notes
 -------------
+- v0.4.5: got `PresentationService` working again on Android 5.1
 - v0.4.4: updated for Android Studio 1.0 and new AAR publishing system
 - v0.4.3: removed `SYSTEM_ALERT_WINDOW` permission requirement
 - v0.4.2: updated Gradle, fixed manifest for merging, added `cwac-` prefix to JAR
