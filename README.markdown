@@ -238,6 +238,15 @@ of the aforementioned classes, with the exception of `PresentationService`.
 There is a separate `demoService/` sub-project with a sample implementation
 of `PresentationService`.
 
+Additional Documentation
+------------------------
+[The Busy Coder's Guide to Android Development](https://commonsware.com/Android)
+contains a chapter dedicated to the `Presentation` API. This chapter walks through
+a few sample apps that use classes from this library. Another chapter in the book
+examines a somewhat larger app that supports output on TVs, etc. by a variety of
+means (e.g., direct-to-TV devices like Android TV and Fire TV) including `Presentation`
+and this library's classes.
+
 License
 -------
 The code in this project is licensed under the Apache
