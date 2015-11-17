@@ -1,7 +1,7 @@
 # How To Contribute
 
 If you have an interest in contributing to this project, here is some advice for packaging your contribution. Thanks!
-
+ 
 ## Contributing Bug Reports
 
 Most likely the most common contribution to a library like this will be bug reports.

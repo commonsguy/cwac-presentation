@@ -267,7 +267,7 @@ implementation details. Just lobbing a pull request over
 the fence may work, but it may not.
 Again, the [contribution guidelines](CONTRIBUTING.md) provide a bit
 of guidance here.
-
+ 
 Release Notes
 -------------
 - v0.4.5: got `PresentationService` working again on Android 5.1
