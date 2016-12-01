@@ -54,7 +54,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.commonsware.cwac:presentation:0.4.+'
+    compile 'com.commonsware.cwac:presentation:0.4.6'
 }
 ```
 
@@ -219,6 +219,11 @@ Note that it is safe to call `startService()` on the service multiple times,
 if you do not know whether the service is already running and need to ensure
 that it is running now.
 
+JavaDocs
+--------
+You can browse
+[the JavaDocs for the latest release](http://javadocs.commonsware.com/cwac/presentation/index.html).
+
 Dependencies
 ------------
 This project depends on Android 4.2 and higher (API Level 17) to actually
@@ -229,7 +234,7 @@ This project also depends upon
 
 Version
 -------
-This is version v0.4.5 of this module, meaning it is coming along nicely.
+This is version v0.4.6 of this module, meaning it is coming along nicely.
 
 Demo
 ----
@@ -267,7 +272,12 @@ The [contribution guidelines](CONTRIBUTING.md)
 provide some suggestions for how to create a bug report that will get
 the problem fixed the fastest.
 
-Do not ask for help via Twitter.
+You are also welcome to join
+[the CommonsWare Community](https://community.commonsware.com/)
+and post questions
+and ideas to [the CWAC category](https://community.commonsware.com/c/cwac).
+
+Do not ask for help via social media.
 
 Also, if you plan on hacking
 on the code with an eye for contributing something back,
@@ -279,6 +289,7 @@ of guidance here.
  
 Release Notes
 -------------
+- v0.4.6: JavaDocs, sources included in repo; source tree reorg; build files update
 - v0.4.5: got `PresentationService` working again on Android 5.1
 - v0.4.4: updated for Android Studio 1.0 and new AAR publishing system
 - v0.4.3: removed `SYSTEM_ALERT_WINDOW` permission requirement
