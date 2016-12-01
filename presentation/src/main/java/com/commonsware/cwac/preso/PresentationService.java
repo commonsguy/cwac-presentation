@@ -25,10 +25,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 
+/**
+ * A service that drives a presentation from the background. Use this when
+ * presentations need to span activities or when they should be occurring even
+ * if the app's UI has moved to the background.
+ *
+ * This is an abstract class -- create a subclass and override getThemeId() and
+ * buildPresoView().
+ */
 public abstract class PresentationService extends Service implements
     PresentationHelper.Listener {
+  /**
+   * @return the theme to use for driving the resources used by
+   * this presentation
+   */
   protected abstract int getThemeId();
 
+  /**
+   * Override this to provide the UI that goes into the presentation.
+   * This works somewhat like a fragment's onCreateView().
+   *
+   * @param ctxt a Context, in case you need one, but note that it will
+   *            <i>not</i> be an activity
+   * @param inflater a LayoutInflater, in case you need one for creating
+   *                 the UI
+   * @return the View that should be shown on the external display
+   */
   protected abstract View buildPresoView(Context ctxt,
                                          LayoutInflater inflater);
 
@@ -36,11 +58,17 @@ public abstract class PresentationService extends Service implements
   private View presoView=null;
   private PresentationHelper helper=null;
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public IBinder onBind(Intent intent) {
     return(null);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void onCreate() {
     super.onCreate();
@@ -49,6 +77,9 @@ public abstract class PresentationService extends Service implements
     helper.onResume();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void onDestroy() {
     helper.onPause();
@@ -56,6 +87,9 @@ public abstract class PresentationService extends Service implements
     super.onDestroy();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void showPreso(Display display) {
     Context presoContext=createPresoContext(display);
@@ -68,6 +102,9 @@ public abstract class PresentationService extends Service implements
     wm.addView(presoView, buildLayoutParams());
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void clearPreso(boolean switchToInline) {
     if (presoView != null) {

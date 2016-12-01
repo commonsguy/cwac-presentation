@@ -17,31 +17,32 @@
 
 package com.commonsware.cwac.preso;
 
-import android.annotation.TargetApi;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 
-public class WebPresentationFragment extends PresentationFragment {
+/**
+ * A WebViewFragment workalike that mirrors its WebView to a supplied
+ * Mirror.
+ */
+public class MirroringWebViewFragment extends MirroringFragment {
   private WebView mWebView;
   private boolean mIsWebViewAvailable;
-  
+
   /**
-   * Called to instantiate the view. Creates and returns the
-   * WebView.
+   * {@inheritDoc}
    */
   @Override
-  public View onCreateView(LayoutInflater inflater,
-                           ViewGroup container,
-                           Bundle savedInstanceState) {
+  protected View onCreateMirroredContent(LayoutInflater inflater,
+                                         ViewGroup container,
+                                         Bundle savedInstanceState) {
     if (mWebView != null) {
       mWebView.destroy();
     }
-    
-    mWebView=new WebView(getContext());
+
+    mWebView=new WebView(getActivity());
     mIsWebViewAvailable=true;
     return mWebView;
   }
@@ -50,26 +51,20 @@ public class WebPresentationFragment extends PresentationFragment {
    * Called when the fragment is visible to the user and
    * actively running. Resumes the WebView.
    */
-  @TargetApi(11)
   @Override
   public void onPause() {
     super.onPause();
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-      mWebView.onPause();
-    }
+    mWebView.onPause();
   }
 
   /**
    * Called when the fragment is no longer resumed. Pauses
    * the WebView.
    */
-  @TargetApi(11)
   @Override
   public void onResume() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-      mWebView.onResume();
-    }
+    mWebView.onResume();
 
     super.onResume();
   }

@@ -21,10 +21,17 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.Display;
 
+/**
+ * Fragment that can display its content in a Presentation. Otherwise,
+ * it largely behaves like an ordinary DialogFragment.
+ */
 abstract public class PresentationFragment extends DialogFragment {
   private Display display=null;
   private Presentation preso=null;
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Dialog onCreateDialog(Bundle savedInstanceState) {
     if (preso == null) {
@@ -34,6 +41,14 @@ abstract public class PresentationFragment extends DialogFragment {
     return(preso);
   }
 
+  /**
+   * Call this to provide the Display for the Presentation and to actually
+   * set up the Presentation. Otherwise, this fragment will behave like
+   * an ordinary DialogFragment.
+   *
+   * @param ctxt a Context associated with this Display
+   * @param display the Display on which to show the Presentation
+   */
   public void setDisplay(Context ctxt, Display display) {
     if (display == null) {
       preso=null;
@@ -45,11 +60,18 @@ abstract public class PresentationFragment extends DialogFragment {
     this.display=display;
   }
 
+  /**
+   * @return the Display supplied via setDisplay
+   */
   public Display getDisplay() {
     return(display);
   }
 
-  protected Context getContext() {
+  /**
+   * @return the Context associated with the Presentation (via setDisplay())
+   * where available
+   */
+  public Context getContext() {
     if (preso != null) {
       return(preso.getContext());
     }

@@ -22,10 +22,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.commonsware.cwac.layouts.Mirror;
 
+/**
+ * A PresentationFragment that displays a Mirror, showing content from
+ * some MirroringFragment. Use this to arrange to display part of a device's
+ * content on a monitor or projector.
+ */
 public class MirrorPresentationFragment extends PresentationFragment {
   private Mirror mirror=null;
   private MirroringFragment source=null;
-  
+
+  /**
+   * Factory method for creating an instance of this fragment.
+   *
+   * Because the Display cannot be put in the saved instance state Bundle,
+   * it is important for the activity that uses this fragment to attempt to
+   * avoid the recreate cycle on configuration changes (e.g., use
+   * android:configChanges in the manifest to handle configuration changes
+   * yourself).
+   *
+   * @param ctxt a Context associated with this Display
+   * @param display the Display on which to show the presentation
+   * @return the fragment
+   */
   public static MirrorPresentationFragment newInstance(Context ctxt,
                                                        Display display) {
     MirrorPresentationFragment frag=new MirrorPresentationFragment();
@@ -34,7 +52,10 @@ public class MirrorPresentationFragment extends PresentationFragment {
 
     return(frag);
   }
-  
+
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public View onCreateView(LayoutInflater inflater,
                            ViewGroup container,

@@ -19,8 +19,20 @@ import android.hardware.display.DisplayManager;
 import android.os.Build;
 import android.view.Display;
 
-public class PresentationHelper implements
-    DisplayManager.DisplayListener {
+/**
+ * A class to assist in managing a Presentation.
+ *
+ * To work properly, you need to forward the onResume() and onPause() events
+ * from your activity to the helper.
+ *
+ * The helper starts in an enabled state. Call disable() to disable it (and
+ * stop showing presentations) and enable() to re-enable it.
+ */
+public class PresentationHelper implements DisplayManager.DisplayListener {
+  /**
+   * A callback to let you know when it is time to show a Presentation
+   * or stop showing that Presentation.
+   */
   public interface Listener {
     void showPreso(Display display);
 
@@ -33,6 +45,13 @@ public class PresentationHelper implements
   private boolean isFirstRun=true;
   private boolean isEnabled=true;
 
+  /**
+   * Basic constructor.
+   *
+   * @param ctxt a Context, typically the activity that is planning on showing
+   *             the Presentation
+   * @param listener the callback for show/hide events
+   */
   public PresentationHelper(Context ctxt, Listener listener) {
     this.listener=listener;
 
@@ -42,6 +61,10 @@ public class PresentationHelper implements
     }
   }
 
+  /**
+   * Call this from onResume() of your activity, so we can determine what
+   * changes need to be made to the Presentation, if any
+   */
   public void onResume() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
       handleRoute();
@@ -49,6 +72,10 @@ public class PresentationHelper implements
     }
   }
 
+  /**
+   * Call this from onPause() of your activity, so we can determine what
+   * changes need to be made to the Presentation, if any
+   */
   public void onPause() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
       listener.clearPreso(false);
@@ -58,11 +85,18 @@ public class PresentationHelper implements
     }
   }
 
+  /**
+   * Call this to re-enable the helper after having previously called disable()
+   */
   public void enable() {
     isEnabled=true;
     handleRoute();
   }
 
+  /**
+   * Call this to stop showing presentations, even if there is an associated
+   * Display for displaying them
+   */
   public void disable() {
     isEnabled=false;
 
@@ -72,6 +106,10 @@ public class PresentationHelper implements
     }
   }
 
+  /**
+   * @return whether or not this helper is enabled, based on enable() and
+   * disable() calls
+   */
   public boolean isEnabled() {
     return(isEnabled);
   }
@@ -114,16 +152,25 @@ public class PresentationHelper implements
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void onDisplayAdded(int displayId) {
     handleRoute();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void onDisplayChanged(int displayId) {
     handleRoute();
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void onDisplayRemoved(int displayId) {
     handleRoute();

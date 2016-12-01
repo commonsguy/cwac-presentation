@@ -17,55 +17,66 @@
 
 package com.commonsware.cwac.preso;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 
-public class MirroringWebViewFragment extends MirroringFragment {
+/**
+ * A mashup of a PresentationFragment with a WebViewFragment, for showing
+ * a WebView's contents on an external display.
+ */
+public class WebPresentationFragment extends PresentationFragment {
   private WebView mWebView;
   private boolean mIsWebViewAvailable;
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  protected View onCreateMirroredContent(LayoutInflater inflater,
-                                         ViewGroup container,
-                                         Bundle savedInstanceState) {
+  public View onCreateView(LayoutInflater inflater,
+                           ViewGroup container,
+                           Bundle savedInstanceState) {
     if (mWebView != null) {
       mWebView.destroy();
     }
-
-    mWebView=new WebView(getActivity());
+    
+    mWebView=new WebView(getContext());
     mIsWebViewAvailable=true;
     return mWebView;
   }
 
   /**
-   * Called when the fragment is visible to the user and
-   * actively running. Resumes the WebView.
+   * {@inheritDoc}
    */
+  @TargetApi(11)
   @Override
   public void onPause() {
     super.onPause();
 
-    mWebView.onPause();
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      mWebView.onPause();
+    }
   }
 
   /**
-   * Called when the fragment is no longer resumed. Pauses
-   * the WebView.
+   * {@inheritDoc}
    */
+  @TargetApi(11)
   @Override
   public void onResume() {
-    mWebView.onResume();
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+      mWebView.onResume();
+    }
 
     super.onResume();
   }
 
   /**
-   * Called when the WebView has been detached from the
-   * fragment. The WebView is no longer available after this
-   * time.
+   * {@inheritDoc}
    */
   @Override
   public void onDestroyView() {
@@ -74,8 +85,7 @@ public class MirroringWebViewFragment extends MirroringFragment {
   }
 
   /**
-   * Called when the fragment is no longer in use. Destroys
-   * the internal state of the WebView.
+   * {@inheritDoc}
    */
   @Override
   public void onDestroy() {
