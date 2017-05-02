@@ -5,9 +5,7 @@
   android:versionCode="1"
   android:versionName="1.0">
 
-  <uses-sdk
-    android:minSdkVersion="17"
-    android:targetSdkVersion="17"/>
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
   <application
     android:allowBackup="true"

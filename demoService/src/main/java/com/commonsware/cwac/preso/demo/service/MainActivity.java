@@ -16,7 +16,9 @@ package com.commonsware.cwac.preso.demo.service;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -26,7 +28,18 @@ public class MainActivity extends Activity {
     super.onCreate(savedInstanceState);
 
     setContentView(R.layout.activity_main);
-    startService(new Intent(this, SlideshowService.class));
+
+/*
+    if (Build.VERSION.SDK_INT<=Build.VERSION_CODES.N ||
+      Settings.canDrawOverlays(this)) {
+*/
+      startService(new Intent(this, SlideshowService.class));
+/*
+    }
+    else {
+      startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION));
+    }
+*/
   }
   
   @Override

@@ -18,6 +18,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
+import android.os.Build;
 import android.os.IBinder;
 import android.view.ContextThemeWrapper;
 import android.view.Display;
@@ -120,13 +121,27 @@ public abstract class PresentationService extends Service implements
     presoView=null;
   }
 
+  /**
+   * Returns the window type to use. The default implementation will use
+   * TYPE_TOAST on Android 7.0 and lower and TYPE_SYSTEM_ALERT on Android
+   * 7.1+. If you are using Cast Remote Display, override this and return
+   * TYPE_PRIVATE_PRESENTATION (note: untested).
+   *
+   * @return a window type (e.g., TYPE_TOAST)
+   */
+  protected int getWindowType() {
+    return(Build.VERSION.SDK_INT<=Build.VERSION_CODES.N ?
+      WindowManager.LayoutParams.TYPE_TOAST :
+      WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+  }
+
   protected WindowManager.LayoutParams buildLayoutParams() {
     return(new WindowManager.LayoutParams(
                                           WindowManager.LayoutParams.MATCH_PARENT,
                                           WindowManager.LayoutParams.MATCH_PARENT,
                                           0,
                                           0,
-                                          WindowManager.LayoutParams.TYPE_TOAST,
+                                          getWindowType(),
                                           0, PixelFormat.OPAQUE));
   }
 
