@@ -8,10 +8,15 @@ repositories {
 
 dependencies {
     debugCompile project(':presentation')
-    releaseCompile 'com.commonsware.cwac:presentation:0.4.+'
+    releaseCompile 'com.commonsware.cwac:presentation:0.5.+'
 }
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 25
+    }
 }

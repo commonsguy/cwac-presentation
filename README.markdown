@@ -54,7 +54,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.commonsware.cwac:presentation:0.4.6'
+    compile 'com.commonsware.cwac:presentation:0.5.0'
 }
 ```
 
@@ -199,6 +199,13 @@ You may also optionally override the `showPreso()` and `clearPreso()` methods
 defined by `PresentationHelper.Listener`, though, once again, please chain
 to the superclass implementations.
 
+You may also optionally override `getWindowType()`. This should return
+the window type `int` to be used for the "window" we are going to use for
+the external display. The stock implementation of `getWindowType()` uses
+`TYPE_TOAST` prior to Android 7.1 and `TYPE_SYSTEM_ALERT` on Android 7.1+.
+If you are using Cast Remote Display, you may need to override this method
+and return `TYPE_PRIVATE_PRESENTATION` (untested).
+
 Then, all you need to do is to arrange to start and stop the service as needed.
 Once started, the service will automatically call `buildPresoView()` and
 show the content, once an external display is detected.
@@ -207,7 +214,6 @@ If things that the user does in your UI should affect the behavior
 of the service and its content, use a message bus implementation, such as:
 
 - `LocalBroadcastManager`
-- Square's Otto
 - greenrobot's EventBus
 
 Your `PresentationService` can receive bus messages and update the `View`
@@ -218,6 +224,13 @@ whose contents you can replace *in toto* if needed.
 Note that it is safe to call `startService()` on the service multiple times,
 if you do not know whether the service is already running and need to ensure
 that it is running now.
+
+Note that using this on Android 7.1+, where a `TYPE_SYSTEM_ALERT` window is
+used, requires the user to go into Settings and allow your app to draw over
+other apps.
+
+On Android O and higher, **please** use multi-display instead of
+`PresentationService`.
 
 JavaDocs
 --------
@@ -234,7 +247,7 @@ This project also depends upon
 
 Version
 -------
-This is version v0.4.6 of this module, meaning it is coming along nicely.
+This is version v0.5.0 of this module, meaning it is coming along nicely.
 
 Demo
 ----
@@ -261,7 +274,7 @@ file.
 Questions
 ---------
 If you have questions regarding the use of this code, please post a question
-on [StackOverflow](http://stackoverflow.com/questions/ask) tagged with
+on [Stack Overflow](http://stackoverflow.com/questions/ask) tagged with
 `commonsware-cwac` and `android` after [searching to see if there already is an answer](https://stackoverflow.com/search?q=[commonsware-cwac]+presentation). Be sure to indicate
 what CWAC module you are having issues with, and be sure to include source code 
 and stack traces if you are encountering crashes.
@@ -289,6 +302,7 @@ of guidance here.
  
 Release Notes
 -------------
+- v0.5.0: better `PresentationService` support for Android 7.1+, demo bug fixes
 - v0.4.6: JavaDocs, sources included in repo; source tree reorg; build files update
 - v0.4.5: got `PresentationService` working again on Android 5.1
 - v0.4.4: updated for Android Studio 1.0 and new AAR publishing system
