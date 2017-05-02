@@ -33,6 +33,6 @@ public class MirrorFragmentActivity extends Activity {
 
     source.setMirror(target);
     source.getWebView().getSettings().setJavaScriptEnabled(true);
-    source.getWebView().loadUrl("http://commonsware.com");
+    source.getWebView().loadUrl("https://commonsware.com");
   }
 }

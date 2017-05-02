@@ -47,7 +47,7 @@ public class NestedPresentationFragment extends PresentationFragment {
     result.post(new Runnable() {
       @Override
       public void run() {
-        wvf.getWebView().loadUrl("http://commonsware.com");
+        wvf.getWebView().loadUrl("https://commonsware.com");
       }
     });
 

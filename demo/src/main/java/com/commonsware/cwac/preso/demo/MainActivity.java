@@ -115,6 +115,6 @@ public class MainActivity extends Activity implements
 
   private PresentationFragment buildPreso(Display display) {
     return(SamplePresentationFragment.newInstance(this, display,
-                                                  "http://commonsware.com"));
+                                                  "https://commonsware.com"));
   }
 }

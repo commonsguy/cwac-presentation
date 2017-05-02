@@ -40,7 +40,7 @@ public class MirrorPresentationActivity extends Activity implements
     source=
         (MirroringWebViewFragment)getFragmentManager().findFragmentById(R.id.source);
     source.getWebView().getSettings().setJavaScriptEnabled(true);
-    source.getWebView().loadUrl("http://commonsware.com");
+    source.getWebView().loadUrl("https://commonsware.com");
   }
 
   @Override
