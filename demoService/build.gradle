@@ -7,8 +7,8 @@ repositories {
 }
 
 dependencies {
-    debugCompile project(':presentation')
-    releaseCompile 'com.commonsware.cwac:presentation:0.5.+'
+    debugImplementation project(':presentation')
+    releaseImplementation 'com.commonsware.cwac:presentation:0.5.+'
     implementation "com.android.support:support-compat:27.0.2"
 }
 
