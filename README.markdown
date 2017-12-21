@@ -229,8 +229,7 @@ Note that using this on Android 7.1+, where a `TYPE_SYSTEM_ALERT` window is
 used, requires the user to go into Settings and allow your app to draw over
 other apps.
 
-On Android O and higher, **please** use multi-display instead of
-`PresentationService`.
+On Android 8.0+, **please** use multi-display instead of `PresentationService`.
 
 JavaDocs
 --------
@@ -247,7 +246,7 @@ This project also depends upon
 
 Version
 -------
-This is version v0.5.0 of this module, meaning it is coming along nicely.
+This is version v0.5.1 of this module, meaning it is coming along nicely.
 
 Demo
 ----
@@ -302,6 +301,7 @@ of guidance here.
  
 Release Notes
 -------------
+- v0.5.1: updated to new Gradle, Android Plugin for Gradle, etc.
 - v0.5.0: better `PresentationService` support for Android 7.1+, demo bug fixes
 - v0.4.6: JavaDocs, sources included in repo; source tree reorg; build files update
 - v0.4.5: got `PresentationService` working again on Android 5.1
