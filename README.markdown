@@ -54,7 +54,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.commonsware.cwac:presentation:0.5.0'
+    implementation 'com.commonsware.cwac:presentation:0.5.1'
 }
 ```
 
