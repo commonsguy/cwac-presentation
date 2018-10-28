@@ -1,5 +1,5 @@
 /***
-  Copyright (c) 2013 CommonsWare, LLC
+  Copyright (c) 2013-2018 CommonsWare, LLC
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may
   not use this file except in compliance with the License. You may obtain
@@ -19,8 +19,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import com.commonsware.cwac.layouts.Mirror;
 import com.commonsware.cwac.preso.MirroringWebViewFragment;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MirrorFragmentActivity extends Activity {
+public class MirrorFragmentActivity extends AppCompatActivity {
   @SuppressLint("SetJavaScriptEnabled")
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,8 @@ public class MirrorFragmentActivity extends Activity {
     setContentView(R.layout.mirror_fragment);
 
     MirroringWebViewFragment source=
-        (MirroringWebViewFragment)getFragmentManager().findFragmentById(R.id.source);
-    Mirror target=(Mirror)findViewById(R.id.target);
+        (MirroringWebViewFragment)getSupportFragmentManager().findFragmentById(R.id.source);
+    Mirror target=findViewById(R.id.target);
 
     source.setMirror(target);
     source.getWebView().getSettings().setJavaScriptEnabled(true);

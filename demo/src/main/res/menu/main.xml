@@ -1,16 +1,17 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto">
 
 	<item
 		android:id="@+id/mirror_fragment"
-		android:showAsAction="never"
+		app:showAsAction="never"
 		android:title="@string/mirror_fragment"/>
 	<item
 		android:id="@+id/mirror_preso"
-		android:showAsAction="never"
+		app:showAsAction="never"
 		android:title="@string/mirror_preso"/>
 	<item
 		android:id="@+id/nested"
-		android:showAsAction="never"
+		app:showAsAction="never"
 		android:title="@string/nested_fragment"/>
 
 </menu>

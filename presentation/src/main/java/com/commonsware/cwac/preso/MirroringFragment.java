@@ -1,5 +1,5 @@
 /***
-  Copyright (c) 2013 CommonsWare, LLC
+  Copyright (c) 2013-2018 CommonsWare, LLC
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may
   not use this file except in compliance with the License. You may obtain
@@ -14,7 +14,6 @@
 
 package com.commonsware.cwac.preso;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -24,6 +23,7 @@ import android.widget.FrameLayout;
 import com.commonsware.cwac.layouts.AspectLockedFrameLayout;
 import com.commonsware.cwac.layouts.Mirror;
 import com.commonsware.cwac.layouts.MirroringFrameLayout;
+import androidx.fragment.app.Fragment;
 
 /**
  * Native fragment that mirrors its contents to the supplied Mirror.

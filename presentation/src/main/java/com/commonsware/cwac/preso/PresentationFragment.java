@@ -1,5 +1,5 @@
 /***
-  Copyright (c) 2013 CommonsWare, LLC
+  Copyright (c) 2013-2018 CommonsWare, LLC
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may
   not use this file except in compliance with the License. You may obtain
@@ -15,11 +15,11 @@
 package com.commonsware.cwac.preso;
 
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.Presentation;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Display;
+import androidx.fragment.app.DialogFragment;
 
 /**
  * Fragment that can display its content in a Presentation. Otherwise,

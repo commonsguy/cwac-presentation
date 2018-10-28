@@ -1,5 +1,5 @@
 /***
-  Copyright (c) 2013 CommonsWare, LLC
+  Copyright (c) 2013-2018 CommonsWare, LLC
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may
   not use this file except in compliance with the License. You may obtain
@@ -15,15 +15,15 @@
 package com.commonsware.cwac.preso.demo;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.Display;
 import com.commonsware.cwac.preso.MirrorPresentationFragment;
 import com.commonsware.cwac.preso.MirroringWebViewFragment;
 import com.commonsware.cwac.preso.PresentationFragment;
 import com.commonsware.cwac.preso.PresentationHelper;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MirrorPresentationActivity extends Activity implements
+public class MirrorPresentationActivity extends AppCompatActivity implements
     PresentationHelper.Listener {
   PresentationFragment preso=null;
   PresentationHelper helper=null;
@@ -38,7 +38,7 @@ public class MirrorPresentationActivity extends Activity implements
 
     helper=new PresentationHelper(this, this);
     source=
-        (MirroringWebViewFragment)getFragmentManager().findFragmentById(R.id.source);
+        (MirroringWebViewFragment)getSupportFragmentManager().findFragmentById(R.id.source);
     source.getWebView().getSettings().setJavaScriptEnabled(true);
     source.getWebView().loadUrl("https://commonsware.com");
   }
@@ -66,7 +66,7 @@ public class MirrorPresentationActivity extends Activity implements
   @Override
   public void showPreso(Display display) {
     preso=buildPreso(display);
-    preso.show(getFragmentManager(), "preso");
+    preso.show(getSupportFragmentManager(), "preso");
   }
 
   private PresentationFragment buildPreso(Display display) {

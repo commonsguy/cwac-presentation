@@ -9,6 +9,7 @@ repositories {
 dependencies {
     debugImplementation project(':presentation')
     releaseImplementation 'com.commonsware.cwac:presentation:0.5.2'
+    implementation "androidx.appcompat:appcompat:1.0.0"
 }
 
 android {

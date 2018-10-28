@@ -1,5 +1,5 @@
 /***
-  Copyright (c) 2013-2014 CommonsWare, LLC
+  Copyright (c) 2013-2018 CommonsWare, LLC
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may
   not use this file except in compliance with the License. You may obtain
@@ -14,32 +14,19 @@
 
 package com.commonsware.cwac.preso.demo.service;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.Menu;
 import android.view.MenuItem;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     setContentView(R.layout.activity_main);
-
-/*
-    if (Build.VERSION.SDK_INT<=Build.VERSION_CODES.N ||
-      Settings.canDrawOverlays(this)) {
-*/
-      startService(new Intent(this, SlideshowService.class));
-/*
-    }
-    else {
-      startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION));
-    }
-*/
+    startService(new Intent(this, SlideshowService.class));
   }
   
   @Override

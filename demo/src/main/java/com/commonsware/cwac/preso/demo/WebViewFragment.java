@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2010 The Android Open Source Project
- * Portions Copyright (c) 2013 CommonsWare, LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,75 +14,77 @@
  * limitations under the License.
  */
 
-package com.commonsware.cwac.preso;
+package com.commonsware.cwac.preso.demo;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import androidx.fragment.app.Fragment;
 
 /**
- * A mashup of a PresentationFragment with a WebViewFragment, for showing
- * a WebView's contents on an external display.
+ * A fragment that displays a WebView.
+ * <p>
+ * The WebView is automically paused or resumed when the Fragment is paused or resumed.
  */
-public class WebPresentationFragment extends PresentationFragment {
+public class WebViewFragment extends Fragment {
   private WebView mWebView;
   private boolean mIsWebViewAvailable;
 
+  public WebViewFragment() {
+  }
+
   /**
-   * {@inheritDoc}
+   * Called to instantiate the view. Creates and returns the WebView.
    */
   @Override
-  public View onCreateView(LayoutInflater inflater,
-                           ViewGroup container,
+  public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     if (mWebView != null) {
       mWebView.destroy();
     }
-    
-    mWebView=new WebView(getContext());
-    mIsWebViewAvailable=true;
+    mWebView = new WebView(getContext());
+    mIsWebViewAvailable = true;
     return mWebView;
   }
 
   /**
-   * {@inheritDoc}
+   * Called when the fragment is visible to the user and actively running. Resumes the WebView.
    */
   @Override
   public void onPause() {
     super.onPause();
-
     mWebView.onPause();
   }
 
   /**
-   * {@inheritDoc}
+   * Called when the fragment is no longer resumed. Pauses the WebView.
    */
   @Override
   public void onResume() {
     mWebView.onResume();
-
     super.onResume();
   }
 
   /**
-   * {@inheritDoc}
+   * Called when the WebView has been detached from the fragment.
+   * The WebView is no longer available after this time.
    */
   @Override
   public void onDestroyView() {
-    mIsWebViewAvailable=false;
+    mIsWebViewAvailable = false;
     super.onDestroyView();
   }
 
   /**
-   * {@inheritDoc}
+   * Called when the fragment is no longer in use. Destroys the internal state of the WebView.
    */
   @Override
   public void onDestroy() {
     if (mWebView != null) {
       mWebView.destroy();
-      mWebView=null;
+      mWebView = null;
     }
     super.onDestroy();
   }

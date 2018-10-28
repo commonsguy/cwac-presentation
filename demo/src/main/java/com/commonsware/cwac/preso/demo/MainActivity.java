@@ -1,5 +1,5 @@
 /***
-  Copyright (c) 2013 CommonsWare, LLC
+  Copyright (c) 2013-2018 CommonsWare, LLC
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may
   not use this file except in compliance with the License. You may obtain
@@ -14,7 +14,6 @@
 
 package com.commonsware.cwac.preso.demo;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,8 +24,9 @@ import android.view.View;
 import android.widget.TextView;
 import com.commonsware.cwac.preso.PresentationFragment;
 import com.commonsware.cwac.preso.PresentationHelper;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends Activity implements
+public class MainActivity extends AppCompatActivity implements
     PresentationHelper.Listener {
   PresentationFragment preso=null;
   View inline=null;
@@ -40,7 +40,7 @@ public class MainActivity extends Activity implements
     setContentView(R.layout.activity_main);
 
     inline=findViewById(R.id.preso);
-    prose=(TextView)findViewById(R.id.prose);
+    prose=findViewById(R.id.prose);
 
     helper=new PresentationHelper(this, this);
   }
@@ -88,7 +88,7 @@ public class MainActivity extends Activity implements
     if (switchToInline) {
       inline.setVisibility(View.VISIBLE);
       prose.setText(R.string.primary);
-      getFragmentManager().beginTransaction()
+      getSupportFragmentManager().beginTransaction()
                           .add(R.id.preso, buildPreso(null)).commit();
     }
 
@@ -110,7 +110,7 @@ public class MainActivity extends Activity implements
     }
 
     preso=buildPreso(display);
-    preso.show(getFragmentManager(), "preso");
+    preso.show(getSupportFragmentManager(), "preso");
   }
 
   private PresentationFragment buildPreso(Display display) {

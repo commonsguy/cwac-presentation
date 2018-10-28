@@ -23,11 +23,11 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import com.commonsware.cwac.preso.PresentationService;
+import androidx.core.app.NotificationCompat;
 
 public class SlideshowService extends PresentationService implements
     Runnable {
