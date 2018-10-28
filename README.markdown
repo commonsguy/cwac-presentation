@@ -41,7 +41,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.commonsware.cwac:presentation.x:0.6.0'
+    implementation 'com.commonsware.cwac:presentation.x:0.6.1'
 }
 ```
 
@@ -55,7 +55,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.commonsware.cwac:presentation:0.5.2'
+    implementation 'com.commonsware.cwac:presentation:0.5.3'
 }
 ```
 
@@ -257,10 +257,10 @@ The AndroidX edition of this artifact (`presentation.x`) depends upon
 
 Version
 -------
-This is version v0.6.0 of this artifact, meaning it is coming along nicely.
+This is version v0.6.1 of this artifact, meaning it is coming along nicely.
 
 Note that the Android Support library edition of this arifact (`presentation`)
-remains at 0.5.2. Outside of critical bug fixes, no further work is planned
+remains at 0.5.3. Outside of critical bug fixes, no further work is planned
 for this version.
 
 Demo
@@ -316,7 +316,9 @@ of guidance here.
  
 Release Notes
 -------------
+- v0.6.1: fixed less-than bug
 - v0.6.0: migrated to AndroidX and started a new artifact (`presentation.x`)
+- v0.5.3: fixed less-than bug
 - v0.5.2: added support for Android 8.0+
 - v0.5.1: updated to new Gradle, Android Plugin for Gradle, etc.
 - v0.5.0: better `PresentationService` support for Android 7.1+, demo bug fixes
