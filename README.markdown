@@ -2,8 +2,8 @@ CWAC-Presentation: Second Screens Supported Succinctly
 ======================================================
 
 This project
-offers a series of classes that wrap around the `Presentation` and
-`DisplayManager` of Android 4.2: 
+offers a series of classes that wrap around `Presentation` and
+`DisplayManager`: 
 
 - `PresentationHelper` consolidates basic `DisplayManager` handling, with
 a listener to inform you when to show or remove your `Presentation`
@@ -25,26 +25,13 @@ background, even if your primary UI is destroyed or otherwise not in the foregro
 
 Installation
 ------------
-This Android library project is 
-[available as a JAR](https://gihub.com/commonsguy/cwac-presentation/releases).
-If you wish to use the JAR, you will need to also add the JAR from
-[the CWAC-Layouts project](http://github.com/commonsguy/cwac-layouts) to your
-project if you wish to use the `Mirror*` classes. If you are not using the `Mirror*`
-classes, then the CWAC-Presentation JAR is sufficient.
+This project is available as an artifact for use with Gradle.
 
-NOTE: The JAR name, as of v0.4.2, has a `cwac-` prefix, to help distinguish it from other JARs.
+There are two versions of this library, for AndroidX and for the older Android Support Library.
 
-Also note that if you plan to use this as an Android library project
-in source form, you
-will also need to download [the CWAC-Layouts project](http://github.com/commonsguy/cwac-layouts)
-(and, if needed, modify this project's configuration to point to your copy of
-CWAC-Layouts' library project). Alternatively, download the CWAC-Layouts JAR into
-the `libs/` directory of your clone of this project and remove the dependency on
-the CWAC-Layouts library project.
+If you cannot use SSL, use `http://repo.commonsware.com` for the repository URL.
 
-This project is also available as
-an artifact for use with Gradle. To use that, add the following
-blocks to your `build.gradle` file:
+### AndroidX
 
 ```groovy
 repositories {
@@ -54,12 +41,23 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.commonsware.cwac:presentation:0.5.1'
+    implementation 'com.commonsware.cwac:presentation.x:0.6.0'
 }
 ```
 
-Or, if you cannot use SSL, use `http://repo.commonsware.com` for the repository
-URL. This should automatically pull down the CWAC-Layouts dependency.
+### Android Support Library
+
+```groovy
+repositories {
+    maven {
+        url "https://s3.amazonaws.com/repo.commonsware.com"
+    }
+}
+
+dependencies {
+    implementation 'com.commonsware.cwac:presentation:0.5.2'
+}
+```
 
 Usage: PresentationHelper
 -------------------------
@@ -130,6 +128,10 @@ If you wish to display this fragment in a `Presentation`, call `show()` on the
 the fragment itself. To get rid of the `Presentation`, call `dismiss()` on
 the `PresentationFragment`.
 
+**NOTE**: In the AndroidX artifacts (`presentation.x`), `PresentationFragment`
+extends `androidx.fragment.app.Fragment`. In the legacy artifact (`presentation`),
+`PresentationFragment` extends `android.app.Fragment`.
+
 Usage: WebPresentationFragment
 ------------------------------
 `WebPresentationFragment` is simply a mash-up of `PresentationFragment` and
@@ -138,6 +140,10 @@ You use it just like `WebViewFragment`, except for the need to call
 `setDisplay()` (per the `PresentationFragment` instructions above). So,
 for example, `getWebView()` returns the `WebView` hosted by the
 `WebPresentationFragment`.
+
+**NOTE**: In the AndroidX artifacts (`presentation.x`), `WebPresentationFragment`
+inherits from `androidx.fragment.app.Fragment`. In the legacy artifact (`presentation`),
+`WebPresentationFragment` inherits from `android.app.Fragment`.
 
 Usage: Mirroring Presentation Classes
 -------------------------------------
@@ -170,6 +176,10 @@ Note that `MirroringFragment` suffers the same limitations as does
 `MirroringFrameLayout`, in that it will work with fairly ordinary `View`s,
 plus `WebView`, but not `SurfaceView` or things that use `SurfaceView`
 (e.g., `VideoView`, Maps V2 maps).
+
+**NOTE**: In the AndroidX artifacts (`presentation.x`), these fragments
+inherit from `androidx.fragment.app.Fragment`. In the legacy artifact (`presentation`),
+these fragments inherit from `android.app.Fragment`.
 
 Usage: PresentationService
 --------------------------
@@ -211,11 +221,8 @@ Once started, the service will automatically call `buildPresoView()` and
 show the content, once an external display is detected.
 
 If things that the user does in your UI should affect the behavior
-of the service and its content, use a message bus implementation, such as:
-
-- `LocalBroadcastManager`
-- greenrobot's EventBus
-
+of the service and its content, use a message bus implementation, such as
+`LocalBroadcastManager`.
 Your `PresentationService` can receive bus messages and update the `View`
 accordingly. Note that there is no present means to *replace* the `View`, so
 you may wish to have `buildPresoView()` return a `FrameLayout` or something else
@@ -230,6 +237,7 @@ used, requires the user to go into Settings and allow your app to draw over
 other apps.
 
 On Android 8.0+, **please** use multi-display instead of `PresentationService`.
+However, `PresentationService` will work on Android 8.0+ if needed.
 
 JavaDocs
 --------
@@ -239,14 +247,21 @@ You can browse
 Dependencies
 ------------
 This project depends on Android 4.2 and higher (API Level 17) to actually
-do its work. It should survive on older devices, simply doing nothing.
+do its work.
 
 This project also depends upon
 [the CWAC-Layouts project](http://github.com/commonsguy/cwac-layouts).
 
+The AndroidX edition of this artifact (`presentation.x`) depends upon
+`androidx.fragment:fragment`.
+
 Version
 -------
-This is version v0.5.1 of this module, meaning it is coming along nicely.
+This is version v0.6.0 of this artifact, meaning it is coming along nicely.
+
+Note that the Android Support library edition of this arifact (`presentation`)
+remains at 0.5.2. Outside of critical bug fixes, no further work is planned
+for this version.
 
 Demo
 ----
@@ -301,6 +316,8 @@ of guidance here.
  
 Release Notes
 -------------
+- v0.6.0: migrated to AndroidX and started a new artifact (`presentation.x`)
+- v0.5.2: added support for Android 8.0+
 - v0.5.1: updated to new Gradle, Android Plugin for Gradle, etc.
 - v0.5.0: better `PresentationService` support for Android 7.1+, demo bug fixes
 - v0.4.6: JavaDocs, sources included in repo; source tree reorg; build files update
