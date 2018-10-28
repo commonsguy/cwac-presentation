@@ -136,7 +136,7 @@ public abstract class PresentationService extends Service implements
    */
   @TargetApi(Build.VERSION_CODES.O)
   protected int getWindowType() {
-    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.N) {
       return WindowManager.LayoutParams.TYPE_TOAST;
     }
     else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
