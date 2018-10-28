@@ -1,5 +1,5 @@
 /***
-  Copyright (c) 2014 CommonsWare, LLC
+  Copyright (c) 2014-2018 CommonsWare, LLC
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may
   not use this file except in compliance with the License. You may obtain
@@ -14,6 +14,7 @@
 
 package com.commonsware.cwac.preso;
 
+import android.annotation.TargetApi;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -122,17 +123,27 @@ public abstract class PresentationService extends Service implements
   }
 
   /**
-   * Returns the window type to use. The default implementation will use
-   * TYPE_TOAST on Android 7.0 and lower and TYPE_SYSTEM_ALERT on Android
-   * 7.1+. If you are using Cast Remote Display, override this and return
+   * Returns the window type to use. The default implementation will use:
+   *
+   * - TYPE_TOAST on Android 7.0 and lower
+   * - TYPE_SYSTEM_ALERT on Android 7.1
+   * - TYPE_APPLICATION_OVERLAY on Android 8.0+
+   *
+   * If you are using Cast Remote Display, override this and return
    * TYPE_PRIVATE_PRESENTATION (note: untested).
    *
    * @return a window type (e.g., TYPE_TOAST)
    */
+  @TargetApi(Build.VERSION_CODES.O)
   protected int getWindowType() {
-    return(Build.VERSION.SDK_INT<=Build.VERSION_CODES.N ?
-      WindowManager.LayoutParams.TYPE_TOAST :
-      WindowManager.LayoutParams.TYPE_SYSTEM_ALERT);
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+      return WindowManager.LayoutParams.TYPE_TOAST;
+    }
+    else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+      return WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+    }
+
+    return WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
   }
 
   protected WindowManager.LayoutParams buildLayoutParams() {
