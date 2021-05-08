@@ -1,5 +1,6 @@
 CWAC-Presentation: Second Screens Supported Succinctly
 ======================================================
+**UPDATE 2021-05-08**: This project is discontinued. This repository will be removed from public access on or after 1 December 2021.
 
 This project
 offers a series of classes that wrap around `Presentation` and
